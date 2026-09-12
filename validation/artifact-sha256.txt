@@ -1,0 +1,4 @@
+4d66bfad516a8e310b74d482a11306b3dde580bc1059726f21be776d4707b904  androidApp/build/outputs/apk/debug/androidApp-debug.apk
+45a15685043122ee4b63dd9085397cd6cc81b5a8ba137dcec82d3221188568eb  duofold-compose/build/outputs/apk/androidTest/duofold-compose-androidTest.apk
+199c366431e1b8e92f1b82cedb6c7553149ee6a76e5a7056d64cfdbdd5e63050  desktopApp/build/compose/binaries/main/app/DuoFoldUniversal/DuoFoldUniversal.exe
+497c8c2a7e5031f6aa847f88104aa80a93532ec32ee17bdb8d1d2f67a194a9c7  gradle/wrapper/gradle-wrapper.jar
