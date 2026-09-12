@@ -1,0 +1,39 @@
+public final class com/example/duofold/input/AdaptiveAndroidPoseSource : com/example/duofold/input/FoldPoseSource {
+	public static final field $stable I
+	public fun <init> (Landroid/content/Context;)V
+	public fun getAvailable ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun getPose ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun recalibrate ()V
+	public fun start ()V
+	public fun stop ()V
+}
+
+public final class com/example/duofold/input/AndroidHingePoseSource : android/hardware/SensorEventListener, com/example/duofold/input/FoldPoseSource {
+	public static final field $stable I
+	public fun <init> (Landroid/content/Context;FLcom/example/duofold/model/FoldPreset;)V
+	public synthetic fun <init> (Landroid/content/Context;FLcom/example/duofold/model/FoldPreset;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getAvailable ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun getPose ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun onAccuracyChanged (Landroid/hardware/Sensor;I)V
+	public fun onSensorChanged (Landroid/hardware/SensorEvent;)V
+	public fun recalibrate ()V
+	public fun start ()V
+	public fun stop ()V
+}
+
+public final class com/example/duofold/input/AndroidMotionPoseSource : android/hardware/SensorEventListener, com/example/duofold/input/FoldPoseSource {
+	public static final field $stable I
+	public fun <init> (Landroid/content/Context;)V
+	public fun getAvailable ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun getPose ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun onAccuracyChanged (Landroid/hardware/Sensor;I)V
+	public fun onSensorChanged (Landroid/hardware/SensorEvent;)V
+	public fun recalibrate ()V
+	public fun start ()V
+	public fun stop ()V
+}
+
+public final class com/example/duofold/render/AgslFoldSurfaceEffectKt {
+	public static final fun foldSurfaceEffect (Landroidx/compose/ui/Modifier;Lcom/example/duofold/render/FoldRenderState;)Landroidx/compose/ui/Modifier;
+}
+

@@ -1,0 +1,82 @@
+name: SDK validation
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - name: Install compile SDK
+        shell: pwsh
+        run: |
+          @("platforms;android-37.0", "build-tools;36.0.0") | Set-Content sdk-packages.txt -Encoding ascii
+          sdkmanager --package_file=sdk-packages.txt
+          if ($LASTEXITCODE -ne 0) { throw "SDK installation failed" }
+      - uses: gradle/actions/setup-gradle@v4
+      - name: SDK tests, native shader compilation, demo compilation
+        shell: bash
+        run: bash ./gradlew :duofold-core:desktopTest :duofold-compose:desktopTest :desktopApp:createDistributable :androidApp:assembleDebug :androidApp:lintDebug :duofold-core:checkKotlinAbi :duofold-compose:checkKotlinAbi --console=plain
+      - name: Stage reusable libraries
+        shell: bash
+        run: bash ./gradlew :duofold-core:publishAllPublicationsToStagingRepository :duofold-compose:publishAllPublicationsToStagingRepository --console=plain
+      - name: Verify independent Maven consumer
+        shell: bash
+        run: bash ./gradlew -p examples/sdk-consumer run --console=plain
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: validation-${{ matrix.os }}
+          path: |
+            **/build/reports/
+            **/build/test-results/
+            androidApp/build/outputs/apk/debug/
+            build/staging-repository/
+            desktopApp/build/compose/binaries/
+  android-shader:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [33, 36]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v3
+      - name: Install compile SDK
+        shell: pwsh
+        run: |
+          @("platforms;android-37.0", "build-tools;36.0.0") | Set-Content sdk-packages.txt -Encoding ascii
+          sdkmanager --package_file=sdk-packages.txt
+          if ($LASTEXITCODE -ne 0) { throw "SDK installation failed" }
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          script: bash ./gradlew :duofold-compose:connectedAndroidDeviceTest --console=plain
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agsl-api-${{ matrix.api }}
+          path: duofold-compose/build/reports/

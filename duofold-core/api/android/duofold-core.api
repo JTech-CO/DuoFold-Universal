@@ -1,0 +1,233 @@
+public abstract interface class com/example/duofold/input/FoldPoseSource {
+	public abstract fun getAvailable ()Lkotlinx/coroutines/flow/StateFlow;
+	public abstract fun getPose ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun recalibrate ()V
+	public fun start ()V
+	public fun stop ()V
+}
+
+public final class com/example/duofold/input/FoldPoseSource$DefaultImpls {
+	public static fun recalibrate (Lcom/example/duofold/input/FoldPoseSource;)V
+	public static fun start (Lcom/example/duofold/input/FoldPoseSource;)V
+	public static fun stop (Lcom/example/duofold/input/FoldPoseSource;)V
+}
+
+public final class com/example/duofold/input/ManualFoldPoseSource : com/example/duofold/input/FoldPoseSource {
+	public fun <init> ()V
+	public fun getAvailable ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun getPose ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun recalibrate ()V
+	public final fun setAngle (FLcom/example/duofold/model/FoldPreset;)V
+	public static synthetic fun setAngle$default (Lcom/example/duofold/input/ManualFoldPoseSource;FLcom/example/duofold/model/FoldPreset;ILjava/lang/Object;)V
+	public fun start ()V
+	public fun stop ()V
+}
+
+public final class com/example/duofold/model/DeviceOpticalProfile : java/lang/Enum {
+	public static final field CUSTOM Lcom/example/duofold/model/DeviceOpticalProfile;
+	public static final field LAPTOP Lcom/example/duofold/model/DeviceOpticalProfile;
+	public static final field PHONE Lcom/example/duofold/model/DeviceOpticalProfile;
+	public static final field TABLET Lcom/example/duofold/model/DeviceOpticalProfile;
+	public final fun getDefaultEyeDistanceMillimeters ()F
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getFallbackPixelsPerMillimeter ()F
+	public static fun valueOf (Ljava/lang/String;)Lcom/example/duofold/model/DeviceOpticalProfile;
+	public static fun values ()[Lcom/example/duofold/model/DeviceOpticalProfile;
+}
+
+public final class com/example/duofold/model/DisplayCalibration {
+	public fun <init> ()V
+	public fun <init> (Lcom/example/duofold/model/DeviceOpticalProfile;Ljava/lang/Float;Ljava/lang/Float;)V
+	public synthetic fun <init> (Lcom/example/duofold/model/DeviceOpticalProfile;Ljava/lang/Float;Ljava/lang/Float;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/example/duofold/model/DeviceOpticalProfile;
+	public final fun component2 ()Ljava/lang/Float;
+	public final fun component3 ()Ljava/lang/Float;
+	public final fun copy (Lcom/example/duofold/model/DeviceOpticalProfile;Ljava/lang/Float;Ljava/lang/Float;)Lcom/example/duofold/model/DisplayCalibration;
+	public static synthetic fun copy$default (Lcom/example/duofold/model/DisplayCalibration;Lcom/example/duofold/model/DeviceOpticalProfile;Ljava/lang/Float;Ljava/lang/Float;ILjava/lang/Object;)Lcom/example/duofold/model/DisplayCalibration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getManualEyeDistanceMillimeters ()Ljava/lang/Float;
+	public final fun getManualPixelsPerMillimeter ()Ljava/lang/Float;
+	public final fun getProfile ()Lcom/example/duofold/model/DeviceOpticalProfile;
+	public fun hashCode ()I
+	public final fun resolveEyeDistanceMillimeters ()F
+	public final fun resolvePixelsPerMillimeter (Ljava/lang/Float;)F
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/example/duofold/model/FoldActiveSide : java/lang/Enum {
+	public static final field BOTH Lcom/example/duofold/model/FoldActiveSide;
+	public static final field NEGATIVE Lcom/example/duofold/model/FoldActiveSide;
+	public static final field POSITIVE Lcom/example/duofold/model/FoldActiveSide;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getShaderValue ()F
+	public static fun valueOf (Ljava/lang/String;)Lcom/example/duofold/model/FoldActiveSide;
+	public static fun values ()[Lcom/example/duofold/model/FoldActiveSide;
+}
+
+public final class com/example/duofold/model/FoldGeometryKt {
+	public static final fun resolve (Lcom/example/duofold/model/FoldPreset;FLcom/example/duofold/model/FoldLine;)Lcom/example/duofold/model/FoldLine;
+	public static synthetic fun resolve$default (Lcom/example/duofold/model/FoldPreset;FLcom/example/duofold/model/FoldLine;ILjava/lang/Object;)Lcom/example/duofold/model/FoldLine;
+}
+
+public final class com/example/duofold/model/FoldInputKind : java/lang/Enum {
+	public static final field HINGE_SENSOR Lcom/example/duofold/model/FoldInputKind;
+	public static final field MANUAL Lcom/example/duofold/model/FoldInputKind;
+	public static final field MOTION_SENSOR Lcom/example/duofold/model/FoldInputKind;
+	public static final field POINTER Lcom/example/duofold/model/FoldInputKind;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/example/duofold/model/FoldInputKind;
+	public static fun values ()[Lcom/example/duofold/model/FoldInputKind;
+}
+
+public final class com/example/duofold/model/FoldLine {
+	public fun <init> (FFFFLcom/example/duofold/model/FoldActiveSide;)V
+	public synthetic fun <init> (FFFFLcom/example/duofold/model/FoldActiveSide;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun component3 ()F
+	public final fun component4 ()F
+	public final fun component5 ()Lcom/example/duofold/model/FoldActiveSide;
+	public final fun copy (FFFFLcom/example/duofold/model/FoldActiveSide;)Lcom/example/duofold/model/FoldLine;
+	public static synthetic fun copy$default (Lcom/example/duofold/model/FoldLine;FFFFLcom/example/duofold/model/FoldActiveSide;ILjava/lang/Object;)Lcom/example/duofold/model/FoldLine;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getActiveSide ()Lcom/example/duofold/model/FoldActiveSide;
+	public final fun getAnchorX ()F
+	public final fun getAnchorY ()F
+	public final fun getDirectionX ()F
+	public final fun getDirectionY ()F
+	public fun hashCode ()I
+	public final fun normalized ()Lcom/example/duofold/model/FoldLine;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/example/duofold/model/FoldPanels {
+	public static final field Companion Lcom/example/duofold/model/FoldPanels$Companion;
+	public fun <init> (FF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun copy (FF)Lcom/example/duofold/model/FoldPanels;
+	public static synthetic fun copy$default (Lcom/example/duofold/model/FoldPanels;FFILjava/lang/Object;)Lcom/example/duofold/model/FoldPanels;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNegativeDegrees ()F
+	public final fun getPositiveDegrees ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/example/duofold/model/FoldPanels$Companion {
+	public final fun fromOpening (FF)Lcom/example/duofold/model/FoldPanels;
+	public static synthetic fun fromOpening$default (Lcom/example/duofold/model/FoldPanels$Companion;FFILjava/lang/Object;)Lcom/example/duofold/model/FoldPanels;
+}
+
+public final class com/example/duofold/model/FoldParameters {
+	public fun <init> ()V
+	public fun <init> (Lcom/example/duofold/model/DisplayCalibration;FFF)V
+	public synthetic fun <init> (Lcom/example/duofold/model/DisplayCalibration;FFFILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lcom/example/duofold/model/DisplayCalibration;
+	public final fun component2 ()F
+	public final fun component3 ()F
+	public final fun component4 ()F
+	public final fun copy (Lcom/example/duofold/model/DisplayCalibration;FFF)Lcom/example/duofold/model/FoldParameters;
+	public static synthetic fun copy$default (Lcom/example/duofold/model/FoldParameters;Lcom/example/duofold/model/DisplayCalibration;FFFILjava/lang/Object;)Lcom/example/duofold/model/FoldParameters;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBlurSpread ()F
+	public final fun getCalibration ()Lcom/example/duofold/model/DisplayCalibration;
+	public final fun getDarkening ()F
+	public final fun getMaxTiltDegrees ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/example/duofold/model/FoldPhysics {
+	public static final field INSTANCE Lcom/example/duofold/model/FoldPhysics;
+	public final fun project (Lcom/example/duofold/model/FoldPoint3;FFF)Lcom/example/duofold/model/FoldPoint3;
+	public final fun rotate (FFFFLcom/example/duofold/model/FoldLine;Lcom/example/duofold/model/FoldPanels;)Lcom/example/duofold/model/FoldPoint3;
+}
+
+public final class com/example/duofold/model/FoldPoint3 {
+	public fun <init> (FFF)V
+	public final fun component1 ()F
+	public final fun component2 ()F
+	public final fun component3 ()F
+	public final fun copy (FFF)Lcom/example/duofold/model/FoldPoint3;
+	public static synthetic fun copy$default (Lcom/example/duofold/model/FoldPoint3;FFFILjava/lang/Object;)Lcom/example/duofold/model/FoldPoint3;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getX ()F
+	public final fun getY ()F
+	public final fun getZ ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/example/duofold/model/FoldPose {
+	public fun <init> ()V
+	public fun <init> (FLcom/example/duofold/model/FoldInputKind;Lcom/example/duofold/model/FoldPreset;FLjava/lang/Float;)V
+	public synthetic fun <init> (FLcom/example/duofold/model/FoldInputKind;Lcom/example/duofold/model/FoldPreset;FLjava/lang/Float;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()F
+	public final fun component2 ()Lcom/example/duofold/model/FoldInputKind;
+	public final fun component3 ()Lcom/example/duofold/model/FoldPreset;
+	public final fun component4 ()F
+	public final fun component5 ()Ljava/lang/Float;
+	public final fun copy (FLcom/example/duofold/model/FoldInputKind;Lcom/example/duofold/model/FoldPreset;FLjava/lang/Float;)Lcom/example/duofold/model/FoldPose;
+	public static synthetic fun copy$default (Lcom/example/duofold/model/FoldPose;FLcom/example/duofold/model/FoldInputKind;Lcom/example/duofold/model/FoldPreset;FLjava/lang/Float;ILjava/lang/Object;)Lcom/example/duofold/model/FoldPose;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAngleDegrees ()F
+	public final fun getConfidence ()F
+	public final fun getHingeOpeningDegrees ()Ljava/lang/Float;
+	public final fun getInputKind ()Lcom/example/duofold/model/FoldInputKind;
+	public final fun getSuggestedPreset ()Lcom/example/duofold/model/FoldPreset;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/example/duofold/model/FoldPreset : java/lang/Enum {
+	public static final field AUTO_EDGE Lcom/example/duofold/model/FoldPreset;
+	public static final field BOTTOM_EDGE Lcom/example/duofold/model/FoldPreset;
+	public static final field CENTER_HORIZONTAL Lcom/example/duofold/model/FoldPreset;
+	public static final field CENTER_VERTICAL Lcom/example/duofold/model/FoldPreset;
+	public static final field CUSTOM Lcom/example/duofold/model/FoldPreset;
+	public static final field LAPTOP_BOTTOM Lcom/example/duofold/model/FoldPreset;
+	public static final field LEFT_EDGE Lcom/example/duofold/model/FoldPreset;
+	public static final field RIGHT_EDGE Lcom/example/duofold/model/FoldPreset;
+	public static final field TOP_EDGE Lcom/example/duofold/model/FoldPreset;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/example/duofold/model/FoldPreset;
+	public static fun values ()[Lcom/example/duofold/model/FoldPreset;
+}
+
+public final class com/example/duofold/model/FoldQuality : java/lang/Enum {
+	public static final field AUTO Lcom/example/duofold/model/FoldQuality;
+	public static final field HIGH Lcom/example/duofold/model/FoldQuality;
+	public static final field LOW Lcom/example/duofold/model/FoldQuality;
+	public static final field MEDIUM Lcom/example/duofold/model/FoldQuality;
+	public static final field ULTRA Lcom/example/duofold/model/FoldQuality;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun sampleBudget (FFF)I
+	public static fun valueOf (Ljava/lang/String;)Lcom/example/duofold/model/FoldQuality;
+	public static fun values ()[Lcom/example/duofold/model/FoldQuality;
+}
+
+public final class com/example/duofold/render/FoldRenderState {
+	public fun <init> (FLcom/example/duofold/model/FoldLine;Lcom/example/duofold/model/FoldParameters;Lcom/example/duofold/model/FoldQuality;Lcom/example/duofold/model/FoldPanels;)V
+	public synthetic fun <init> (FLcom/example/duofold/model/FoldLine;Lcom/example/duofold/model/FoldParameters;Lcom/example/duofold/model/FoldQuality;Lcom/example/duofold/model/FoldPanels;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()F
+	public final fun component2 ()Lcom/example/duofold/model/FoldLine;
+	public final fun component3 ()Lcom/example/duofold/model/FoldParameters;
+	public final fun component4 ()Lcom/example/duofold/model/FoldQuality;
+	public final fun component5 ()Lcom/example/duofold/model/FoldPanels;
+	public final fun copy (FLcom/example/duofold/model/FoldLine;Lcom/example/duofold/model/FoldParameters;Lcom/example/duofold/model/FoldQuality;Lcom/example/duofold/model/FoldPanels;)Lcom/example/duofold/render/FoldRenderState;
+	public static synthetic fun copy$default (Lcom/example/duofold/render/FoldRenderState;FLcom/example/duofold/model/FoldLine;Lcom/example/duofold/model/FoldParameters;Lcom/example/duofold/model/FoldQuality;Lcom/example/duofold/model/FoldPanels;ILjava/lang/Object;)Lcom/example/duofold/render/FoldRenderState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAngleDegrees ()F
+	public final fun getClampedAngleDegrees ()F
+	public final fun getLine ()Lcom/example/duofold/model/FoldLine;
+	public final fun getMaximumPanelTilt ()F
+	public final fun getPanels ()Lcom/example/duofold/model/FoldPanels;
+	public final fun getParameters ()Lcom/example/duofold/model/FoldParameters;
+	public final fun getQuality ()Lcom/example/duofold/model/FoldQuality;
+	public final fun getRenderPanels ()Lcom/example/duofold/model/FoldPanels;
+	public final fun getResolvedPanels ()Lcom/example/duofold/model/FoldPanels;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

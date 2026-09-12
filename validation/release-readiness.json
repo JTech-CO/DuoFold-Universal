@@ -1,0 +1,14 @@
+{
+  "candidate": "1.0.0-dev.1",
+  "sourceRevision": "",
+  "licenseReview": { "status": "pending", "evidence": "" },
+  "apiReview": { "status": "pending", "evidence": "" },
+  "platforms": [
+    { "id": "galaxy-phone", "status": "pending", "model": "", "os": "", "evidence": "" },
+    { "id": "galaxy-tab", "status": "pending", "model": "", "os": "", "evidence": "" },
+    { "id": "galaxy-z-fold", "status": "pending", "model": "", "os": "", "evidence": "" },
+    { "id": "galaxy-z-flip", "status": "pending", "model": "", "os": "", "evidence": "" },
+    { "id": "windows", "status": "pending", "model": "", "os": "", "evidence": "" },
+    { "id": "macos", "status": "pending", "model": "", "os": "", "evidence": "" }
+  ]
+}
